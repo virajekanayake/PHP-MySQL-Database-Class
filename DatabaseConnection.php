@@ -22,10 +22,13 @@ class DatabaseConnection
 {
      protected static $connection;
 
-
+     /**
+      * Establish the initial database connection
+      * @return string set database connection
+      */
      private function getConnection() {
         if(!isset(self::$connection)) {
-            $config = parse_ini_file('DbConfig.ini');
+            $config = parse_ini_file('DbConfig.ini');// read database credentials from file
             self::$connection = new mysqli($config['host'],$config['username'],$config['password'],$config['dbname']);
             self::$connection->set_charset("utf8");
         }
